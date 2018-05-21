@@ -30,6 +30,20 @@ function isString(node) {
     // return typeof node === 'string'
 }
 
+function amendIndex(oldNode) {
+    let count = oldNode.length;
+    if(oldNode instanceof Array) {
+        oldNode.forEach((child, idx) => {
+            if(child instanceof Element) {
+                count += amendIndex(child);
+            } else {
+                count++;
+            }
+        });
+    }
+    return count;
+}
+
 function walk(oldNode, newNode, index, patches) {
     let currentPatch = []; // 每个元素都有一个补丁对象
 
@@ -51,7 +65,8 @@ function walk(oldNode, newNode, index, patches) {
     } else {
         // 以上都不满足说明节点被替换了
         currentPatch.push({type: REPLACE, newNode});
-        diffChildren(oldNode.children, newNode.children, patches);
+        // diffChildren(oldNode.children, newNode.children, patches);
+        Index += (amendIndex(oldNode.children) - 1);
     }
     if(currentPatch.length > 0) { // 当前元素确实有补丁
         // 将当前元素和补丁对应起来，放到大补丁包

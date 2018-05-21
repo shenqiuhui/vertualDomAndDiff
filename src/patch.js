@@ -10,7 +10,6 @@ function patch(node, patches) {
 }
 function walk(node) {
     let currentPatch = allPatches[index++];
-    // console.log(currentPatch);
     let childNodes = node.childNodes;
     childNodes.forEach(child => walk(child));
     if(currentPatch) {
