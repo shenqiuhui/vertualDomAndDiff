@@ -2,7 +2,7 @@ import { createElement, render, renderDom } from './element';
 import diff from './diff';
 import patch from './patch';
 
-let vertualDom = createElement('ul', {class: 'list'}, [
+let vertualDom1 = createElement('ul', {class: 'list'}, [
     createElement('li', {class: 'item'}, ['a']),
     createElement('li', {class: 'item'}, ['b']),
     createElement('li', {class: 'item'}, ['c']),
@@ -26,13 +26,13 @@ let vertualDom2 = createElement('ul', {class: 'list-group', id: 'ls'}, [
 ]);
 
 // 将虚拟 dom 转化成了真实 dom 渲染到页面上
-let el = render(vertualDom);
+let el = render(vertualDom1);
 renderDom(el, window.root);
-console.log(vertualDom);
-console.log(el);
+console.log(vertualDom1);
+console.log(vertualDom2);
 
 // dom diff 比较两个虚拟 Dom 区别，比较两个对象的区别
-let patches = diff(vertualDom, vertualDom2);
+let patches = diff(vertualDom1, vertualDom2);
 
 // dom diff 作用，根据两个虚拟对象创建出补丁，描述改变的内容，将这个补丁用来更新 dom
 window.onload = function () {
