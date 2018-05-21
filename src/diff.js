@@ -27,7 +27,6 @@ function diffChildren(oldChildren, newChildren, patches) {
 
 function isString(node) {
     return Object.prototype.toString.call(node) === '[object String]';
-    // return typeof node === 'string'
 }
 
 function amendIndex(oldNode) {
@@ -65,13 +64,12 @@ function walk(oldNode, newNode, index, patches) {
     } else {
         // 以上都不满足说明节点被替换了
         currentPatch.push({type: REPLACE, newNode});
-        // diffChildren(oldNode.children, newNode.children, patches);
+        // 更正节点的索引
         Index += (amendIndex(oldNode.children) - 1);
     }
     if(currentPatch.length > 0) { // 当前元素确实有补丁
         // 将当前元素和补丁对应起来，放到大补丁包
         patches[index] = currentPatch;
-        console.log(patches);
     }
 }
 
