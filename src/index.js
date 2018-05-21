@@ -35,6 +35,9 @@ console.log(el);
 let patches = diff(vertualDom, vertualDom2);
 
 // dom diff 作用，根据两个虚拟对象创建出补丁，描述改变的内容，将这个补丁用来更新 dom
-setTimeout(() => {
-    patch(el, patches);
-}, 5000);
+window.onload = function () {
+    let btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+        patch(el, patches);
+    });
+}
