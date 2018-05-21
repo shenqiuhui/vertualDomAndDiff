@@ -1,2 +1,8 @@
-# vertualDomAndDiff
-虚拟 Dom 及 Diff 算法的简易实现
+## 生成项目
+```
+npm install create-react-app -g
+create-react-app dom-diff
+```
+
+## 虚拟 Dom
+createElement => {type, props, children}
